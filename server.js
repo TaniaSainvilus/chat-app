@@ -20,8 +20,7 @@ mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 mongoose.connect(mongodbURI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  useCreateIndex: true
 })
 mongoose.connection.once('open', ()=>{
     console.log('connected to mongoose...')
@@ -33,7 +32,8 @@ app.use(
   session({
     secret: process.env.JWT_SECRET, 
     resave: false, 
-    saveUninitialized: false 
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 )
 
