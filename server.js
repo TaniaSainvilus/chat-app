@@ -7,8 +7,8 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3003
 
-const mongodb_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
-console.log(mongodb_URI)
+const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/ventd'
+console.log(mongodbURI)
 require('dotenv').config()
 
 // Error / Disconnection
@@ -16,7 +16,7 @@ mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
 //Database Connection
-mongoose.connect(mongodb_URI, { 
+mongoose.connect(mongodbURI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -35,7 +35,7 @@ app.use(
   })
 )
 
-const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com/'];
+const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com/', "https://ventdchatapp-frontend.herokuapp.com"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) >= 0) {
