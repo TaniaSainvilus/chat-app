@@ -16,7 +16,7 @@ chats.get("/", (req, res) => {
     });
 });
 
-//Seed value for road trip presets
+//Seed value
 chats.get("/seed", (req, res) => {
     let names = ["John", "Bill", "John", "Bill"];
     let chats = [];
@@ -34,7 +34,7 @@ chats.get("/seed", (req, res) => {
     })
 })
 
-//Create new budget category
+//Create 
 chats.post("/", (req, res) => {
     Chat.create(req.body, (err, createdChat) => {
         if (err) {
@@ -44,7 +44,7 @@ chats.post("/", (req, res) => {
     });
 });
 
-//update budget value
+//update
 chats.put('/:id', (req, res) => {
     Chat.findByIdAndUpdate(req.params.id, {$set: req.body}, (err, updatedChat) => {
         if (err) {
@@ -54,7 +54,7 @@ chats.put('/:id', (req, res) => {
     })
 })
 
-//delete budget category
+//delete
 chats.delete("/:id", (req, res) => {
     Chat.findByIdAndDelete(req.params.id, (err, deletedChat) => {
         if (err) {
