@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')(session)
 const session = require('express-session')
 const cors = require('cors')
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(mongodbURI, {
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 })
 mongoose.connection.once('open', ()=>{
     console.log('connected to mongoose...')
