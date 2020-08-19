@@ -7,9 +7,6 @@ const User = require("../models/user.js")
 
 //ROUTES
 
-// user.get('/new', (req, res) => {
-//     res.render('')
-//   })
 
 user.get("/:username", (req, res) => {
     User.find({username: req.params.username}, (err, foundUser) => {

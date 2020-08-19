@@ -7,7 +7,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3003
 
-const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/ventd'
+const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
 require('dotenv').config()
 
@@ -16,7 +16,7 @@ mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
 //Database Connection
-mongoose.connect(mongodbURI, { 
+mongoose.connect(mongodb_URI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -29,9 +29,9 @@ mongoose.connection.once('open', ()=>{
 app.use(express.json())
 app.use(
   session({
-    secret: process.env.JWT_SECRET, //a random string do not copy this value or your stuff will get hacked
-    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    secret: process.env.JWT_SECRET, 
+    resave: false, 
+    saveUninitialized: false 
   })
 )
 
