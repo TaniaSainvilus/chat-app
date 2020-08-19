@@ -7,7 +7,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3003
 
-const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/xpense'
+const mongodbURI = process.env.MONGODBURI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
 require('dotenv').config()
 
@@ -35,7 +35,7 @@ app.use(
   })
 )
 
-const whitelist = ['http://localhost:3000', 'http://10.0.0.29:3000', 'https://xpensefrontend.herokuapp.com/', "https://xpensefrontend.herokuapp.com"];
+const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) >= 0) {
@@ -49,7 +49,7 @@ app.use(cors(corsOptions))
 
 //For allowing all headers to avoid preflight CORS problems
 app.all((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://xpensefrontend.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com/');
   next();
 });
 
