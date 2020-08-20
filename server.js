@@ -12,7 +12,7 @@ const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
 require('dotenv').config()
 
-socket = io.listen(process.env.PORT);
+
 
 // Error / Disconnection
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
