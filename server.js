@@ -53,7 +53,7 @@ app.use(cors(corsOptions))
 
 //For allowing all headers to avoid preflight CORS problems
 app.all((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com/');
+  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
   next();
 });
 
