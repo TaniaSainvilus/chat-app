@@ -8,7 +8,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const PORT = process.env.PORT || 3003
 
-const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/xpense'
+const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
 require('dotenv').config()
 
