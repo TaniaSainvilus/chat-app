@@ -4,9 +4,9 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const cors = require('cors')
 const app = express();
-const http = require('http').Server(app);
+const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const PORT = process.env.PORT || 3003
+const PORT = process.env .PORT || 3003
 
 const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
