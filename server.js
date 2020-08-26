@@ -8,7 +8,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const PORT = process.env .PORT || 3003
 
-const mongodbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
 console.log(mongodbURI)
 require('dotenv').config()
 
@@ -35,7 +35,7 @@ app.use(
     secret: process.env.JWT_SECRET, 
     resave: false, 
     saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    // store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 )
 

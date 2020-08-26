@@ -50,7 +50,6 @@ user.post('/register', async (req, res) => {
 user.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body
-    //validation of email and password for logged in user
     if (!email || !password)
     return res.status(400).json({
         msg: "Incomplete field."
