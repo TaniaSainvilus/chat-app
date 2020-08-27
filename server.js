@@ -6,10 +6,10 @@ const cors = require('cors')
 const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-const PORT = process.env .PORT || 3003
+const PORT = process.env.PORT || 3003
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
-console.log(mongodbURI)
+
 require('dotenv').config()
 
 
