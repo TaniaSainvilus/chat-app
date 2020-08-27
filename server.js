@@ -19,7 +19,7 @@ mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
 
 //Database Connection
-mongoose.connect(mongodbURI, { 
+mongoose.connect(mongoURI, { 
   useNewUrlParser: true, 
   useUnifiedTopology: true,
   useCreateIndex: true
