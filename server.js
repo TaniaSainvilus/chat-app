@@ -35,7 +35,7 @@ app.use(
   })
 )
 
-const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com/', 'https://ventdchatapp-frontend.herokuapp.com'];
+const whitelist = ['http://localhost:3000', 'http://ventdchatapp-frontend.herokuapp.com/', 'https://ventdchatapp-frontend.herokuapp.com'];
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -49,7 +49,7 @@ app.use(cors(corsOptions))
 
 //For allowing all headers to avoid preflight CORS problems
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
+  res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
