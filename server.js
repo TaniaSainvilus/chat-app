@@ -6,6 +6,7 @@ const cors = require('cors')
 const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+const sharedsession = require('express-socket.io-session');
 const PORT = process.env.PORT || 3003
 
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventd'
@@ -69,6 +70,8 @@ app.get('/', (req, res) => {
 });
 
 const Chat = require("./models/chat.js");
+
+io.use(sharedsession(session));
 
 io.on('connection', (socket) => {
 
