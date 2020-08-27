@@ -35,7 +35,7 @@ app.use(
     secret: process.env.JWT_SECRET, 
     resave: false, 
     saveUninitialized: false,
-    // store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
   })
 )
 
