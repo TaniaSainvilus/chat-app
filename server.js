@@ -29,11 +29,16 @@ mongoose.connection.once('open', ()=>{
 app.use(express.json())
 app.use(
   session({
-    secret: process.env.JWT_SECRET, //a random string do not copy this value or your stuff will get hacked
-    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
-    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+    secret: process.env.JWT_SECRET,
+    resave: false, 
+    saveUninitialized: false 
   })
 )
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
+  next();
+});
 
 const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com', "'https://ventdchatapp-frontend.herokuapp.com'"];
 const corsOptions = {
@@ -47,11 +52,6 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
-//For allowing all headers to avoid preflight CORS problems
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
-  next();
-});
 
 //Controller/Routes
 const chatsController = require("./controllers/chat.js");
@@ -83,6 +83,10 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('push', cht);
   });
 
+});
+
+app.listen(PORT, ()=> {
+  console.log("I am listening for requests at port:", PORT);
 });
 
 http.listen(PORT, ()=> {
