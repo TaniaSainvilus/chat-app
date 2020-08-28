@@ -6,7 +6,7 @@ const cors = require('cors')
 const app = require('express')();
 const http = require('http').createServer(app);
 //const io = module.exports.io = require('socket.io')(http, { origins: '*:*'})
-const io = require('socket.io')(http);
+const io = require('socket.io').listen(http);
 // const sharedsession = require('express-socket.io-session');
 const PORT = process.env.PORT || 3003
 
@@ -76,11 +76,11 @@ app.get('/', (req, res) => {
 
 const Chat = require("./models/chat.js");
 
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
-  io.set("log level", 1);
-});
+// io.configure(function () {
+//   io.set("transports", ["xhr-polling"]);
+//   io.set("polling duration", 10);
+//   io.set("log level", 1);
+// });
 
 io.on('connection', (socket) => {
   // Get the last 10 messages from the database.
