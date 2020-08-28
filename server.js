@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose')
 const session = require('express-session')
 const cors = require('cors')
-app.use(cors())
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -27,14 +26,14 @@ mongoose.connection.once('open', ()=>{
 })
 
 //middleware
-app.use(express.json())
-app.use(
-  session({
-    secret: process.env.JWT_SECRET,
-    resave: false, 
-    saveUninitialized: false 
-  })
-)
+// app.use(express.json())
+// app.use(
+//   session({
+//     secret: process.env.JWT_SECRET,
+//     resave: false, 
+//     saveUninitialized: false 
+//   })
+// )
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
