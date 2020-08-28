@@ -75,7 +75,11 @@ app.get('/', (req, res) => {
 
 const Chat = require("./models/chat.js");
 
-// io.use(sharedsession(session));
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+  io.set("log level", 1);
+});
 
 io.on('connection', (socket) => {
   // Get the last 10 messages from the database.
