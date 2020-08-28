@@ -85,10 +85,6 @@ io.on('connection', (socket) => {
 
 });
 
-app.listen(PORT, ()=> {
-  console.log("I am listening for requests at port:", PORT);
-});
-
 http.listen(PORT, ()=> {
     console.log("I am listening for requests at port:", PORT);
   });
