@@ -37,11 +37,10 @@ app.use(
 
 app.all((req, res, next) => {
     // CORS headers
-    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
+    res.header("Access-Control-Allow-Origin", "https://ventdchatapp-frontend.herokuapp.com"); // restrict it to the required domain
     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
     // Set custom headers for CORS
     res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
-
     if (req.method === "OPTIONS") {
         return res.status(200).end();
     }
@@ -59,8 +58,6 @@ const corsOptions = {
     }
   }
 }
-app.use(cors(corsOptions))
-app.options('*', cors());
 
 //Controller/Routes
 const chatsController = require("./controllers/chat.js");
@@ -76,27 +73,19 @@ app.get('/', (req, res) => {
 const Chat = require("./models/chat.js");
 
 io.on('connection', (socket) => {
-
   // Get the last 10 messages from the database.
   Chat.find().sort({createdAt: -1}).limit(10).exec((err, chat) => {
     if (err) return console.error(err);
-
     // Send the last messages to the user.
     socket.emit('init', chat);
   });
-
   // Listen to connected users for a new message.
   socket.on('message', (cht) => {
-
     // Notify all other users about a new message.
     socket.broadcast.emit('push', cht);
   });
-
 });
 
-// app.listen(PORT, ()=> {
-//   console.log("I am listening for requests at port:", PORT);
-// });
 
 http.listen(PORT, ()=> {
     console.log("I am listening for requests at port:", PORT);
