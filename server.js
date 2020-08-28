@@ -5,7 +5,8 @@ const session = require('express-session')
 const cors = require('cors')
 const app = require('express')();
 const http = require('http').createServer(app);
-const io = module.exports.io = require('socket.io')(http, { origins: '*:*'})
+//const io = module.exports.io = require('socket.io')(http, { origins: '*:*'})
+const io = require('socket.io')(http);
 // const sharedsession = require('express-socket.io-session');
 const PORT = process.env.PORT || 3003
 
