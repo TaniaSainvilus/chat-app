@@ -60,7 +60,7 @@ const corsOptions = {
   }
 }
 app.use(cors(corsOptions))
-
+app.options('*', cors());
 
 //Controller/Routes
 const chatsController = require("./controllers/chat.js");
