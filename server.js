@@ -35,22 +35,22 @@ app.use(
   })
 )
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://ventdchatapp-frontend.herokuapp.com');
+//   next();
+// });
 
-const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com', "'https://ventdchatapp-frontend.herokuapp.com'"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
-}
-app.use(cors(corsOptions))
+// const whitelist = ['http://localhost:3000', 'https://ventdchatapp-frontend.herokuapp.com', "'https://ventdchatapp-frontend.herokuapp.com'"];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true)
+//     } else {
+//       callback(new Error('Not allowed by CORS'))
+//     }
+//   }
+// }
+// app.use(cors(corsOptions))
 
 
 //Controller/Routes
